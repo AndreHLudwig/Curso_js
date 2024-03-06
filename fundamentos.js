@@ -102,7 +102,7 @@ switch(fruta){
 
 //Estruturas de repetição
 //contador, condição de limite, incremento
-for(let x = 0; x <5; x++){
+for(let x = 0; x < 5; x++){
     console.log("O valor de x é:" + x);
 }
 
