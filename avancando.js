@@ -87,7 +87,7 @@ setTimeout(function(){
 
 //Promises
 const promessa = new Promise((resolve, reject) => {
-    const condicao = true;
+    const condicao = false;
     if (condicao) {
       resolve("A condição é verdadeira!");
     } else {
@@ -95,4 +95,64 @@ const promessa = new Promise((resolve, reject) => {
     }
   });
   
-  promessa.then((mensagem) => console.log(mensagem)) // "A condição é verdadeira!"
+  promessa.then((mensagem) => {
+    console.log(mensagem)
+  })
+  .catch((erro)=>{
+    console.log(erro)
+    })
+
+//Bibliotecas feitas que são "promise based"
+
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 2500, "testando");
+})
+
+Promise.all([promise1, promise2]).then((valores) => console.log(valores))
+
+//Async Await
+async function obterValor() {
+    const promessa = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("Valor obtido"), 2000);
+      });
+
+      const valor = await promessa;
+
+      console.log(valor);
+}
+
+obterValor();
+
+async function obterValorComErro(){
+    try {
+        const promessa = new Promise((resolve, reject) => {
+            setTimeout(() => reject("Valor com erro"), 2000);
+          });
+    
+          const valor = await promessa;
+    
+          console.log(valor);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+obterValorComErro();
+
+//JSON (JavaScript Object Notation)
+// {nome: "teste"} => {"nome": "teste"}
+//Padroniza a comunicação
+//front-end e back-end em uma linguagem só
+const objeto = {nome: "João", idade: 30};
+
+const jsonString = JSON.stringify(objeto)
+
+console.log(jsonString);
+console.log(typeof jsonString);
+
+const json = '{nome: "João", idade: 30}';
+//conversão
+const objeto2 = JSON.parse(json);
+
+console.log(objeto2);
